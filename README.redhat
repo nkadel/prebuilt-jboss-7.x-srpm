@@ -1,0 +1,39 @@
+This bundle is built from the downloaded JBoss AS binary tarball, not
+compiled from scratch. The RPM deployment is based on:
+
+   http://opensourcearchitect.co/tutorials/installing-jboss-7-1-on-centos-6
+
+It has these notable differences:
+
+   Uses the built-in bin/init.d/jboss-as init script.
+
+   Uses the built-in bin/init.d/jboss.conf file for /etc/sysconfig/jboss-as.conf
+
+   Uuses "jboss-as" user.
+
+   Ses up /var/log/jboss-as and /var/run/jboss-as with correct ownership.
+
+   Use "/usr/share/jboss-as", not version specific locations
+
+As noted on that web page, it's necessary to set up the initial JBoss
+AS users after installation:
+
+   # sudo -i -u jboss-as
+   # cd /usr/share/jboss-as/bin
+   # ./add-user.sh
+
+   What type of user do you with to add?
+   a) Management User (mgmt-users.properties)
+   b) Application User (application-users.properties)
+   (a)L a
+
+   Enter the details of the new user to add.
+   Realm (ManagementRealm):
+   Username: jboss-as
+   Passwd: 
+   Re-enter Password:
+
+"jb0ss" is a commonly used default password.
+
+	     Nico Kadel-Garcia <nkadel@gmail.com>
+	     2013-09-18
