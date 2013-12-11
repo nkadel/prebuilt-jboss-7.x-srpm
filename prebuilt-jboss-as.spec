@@ -3,7 +3,7 @@
 
 Name:		prebuilt-jboss-as
 Version:	7.1.1
-Release:	0.1%{?dist}
+Release:	0.2%{?dist}
 Summary:	JBoss AS, pre-built
 
 Group:		Sysetem Environment/Daemons
@@ -47,7 +47,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %{__mkdir} -p $RPM_BUILD_ROOT/etc/sysconfig
-%{__install} -m 644 bin/init.d/jboss-as.conf $RPM_BUILD_ROOT//etc/sysconfig
+%{__install} -m 644 bin/init.d/jboss-as.conf $RPM_BUILD_ROOT/etc/jboss-as.conf
 
 # Default target directories, owned by jboss-as user
 %{__mkdir} -p $RPM_BUILD_ROOT/var/run/jboss-as
@@ -78,13 +78,16 @@ fi
 %defattr(-,root,root,-)
 %doc LICENSE.txt README.txt README.redhat
 %doc docs/examples
-%config(noreplace) /etc/sysconfig/jboss-as.conf
+%config(noreplace) /etc/jboss-as/jboss-as.conf
 %{_initddir}/jboss-as
 %attr(-,jboss-as,jboss-as) %{_datarootdir}/jboss-as
 %attr(755,jboss-as,jboss-as) %dir /var/run/jboss-as
 %attr(755,jboss-as,jboss-as) %dir /var/log/jboss-as
 
 %changelog
+* Thu Sep 19 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 7.1.1-0.2
+- Relocate jboss-as.conf to /etc/jboss-as/jboss-as.conf, init script default.
+
 * Thu Sep 19 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 7.1.1-0.1
 - Create inital RPM from binary jboss-as-7.1. tarball
 
