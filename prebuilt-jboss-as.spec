@@ -46,8 +46,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__install} -m 755 bin/init.d/jboss-as-standalone.sh $RPM_BUILD_ROOT/%{_initddir}/jboss-as
 
 
-%{__mkdir} -p $RPM_BUILD_ROOT/etc/sysconfig
-%{__install} -m 644 bin/init.d/jboss-as.conf $RPM_BUILD_ROOT/etc/jboss-as.conf
+%{__mkdir} -p $RPM_BUILD_ROOT/etc/jboss-as
+%{__install} -m 644 bin/init.d/jboss-as.conf $RPM_BUILD_ROOT/etc/jboss-as/jboss-as.conf
 
 # Default target directories, owned by jboss-as user
 %{__mkdir} -p $RPM_BUILD_ROOT/var/run/jboss-as
