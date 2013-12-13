@@ -3,7 +3,7 @@
 
 Name:		prebuilt-jboss-as
 Version:	7.1.1
-Release:	0.2%{?dist}
+Release:	0.3%{?dist}
 Summary:	JBoss AS, pre-built
 
 Group:		Sysetem Environment/Daemons
@@ -11,6 +11,7 @@ License:	GPLv2+
 URL:		http://www.jboss.org/jbossas
 Source0:	jboss-as-%{version}.Final.tar.gz
 Source10:	README.redhat
+Source11:	jboss-as.conf.fedora
 
 #BuildRequires:	
 Requires:	chkconfig
@@ -47,7 +48,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %{__mkdir} -p $RPM_BUILD_ROOT/etc/jboss-as
-%{__install} -m 644 bin/init.d/jboss-as.conf $RPM_BUILD_ROOT/etc/jboss-as/jboss-as.conf
+# Use Fedora modified conf file
+#%{__install} -m 644 bin/init.d/jboss-as.conf $RPM_BUILD_ROOT/etc/jboss-as/jboss-as.conf
+%{__install} -m 644 %SOURCE11 $RPM_BUILD_ROOT/etc/jboss-as/jboss-as.conf
 
 # Default target directories, owned by jboss-as user
 %{__mkdir} -p $RPM_BUILD_ROOT/var/run/jboss-as
@@ -85,6 +88,9 @@ fi
 %attr(755,jboss-as,jboss-as) %dir /var/log/jboss-as
 
 %changelog
+* Thu Dec 12 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 7.1.1-0.3
+- Populate jboss-as.conf with RHEL/Fedora compatible defaults
+
 * Thu Sep 19 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 7.1.1-0.2
 - Relocate jboss-as.conf to /etc/jboss-as/jboss-as.conf, init script default.
 
