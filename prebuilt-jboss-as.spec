@@ -63,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 # Add the "jboss-as" user
 getent group jboss-as >/dev/null || groupadd -g 440 -r jboss-as
 getent passwd jboss-as >/dev/null || \
-  useradd -r -u 448 -g jboss-as -s /sbin/nologin \
+  useradd -r -u 448 -g jboss-as -s /bin/sh \
     -d %{_datarootdir}/jboss-as -c "Jboss Advanced Server" jboss-as
 exit 0
 
@@ -90,6 +90,7 @@ fi
 %changelog
 * Thu Dec 12 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 7.1.1-0.3
 - Populate jboss-as.conf with RHEL/Fedora compatible defaults
+- Give the jboss-as user a valid shell
 
 * Thu Sep 19 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 7.1.1-0.2
 - Relocate jboss-as.conf to /etc/jboss-as/jboss-as.conf, init script default.

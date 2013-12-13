@@ -7,16 +7,19 @@ It has these notable differences:
 
    Uses the built-in bin/init.d/jboss-as init script.
 
-   Uses the built-in bin/init.d/jboss.conf file for /etc/sysconfig/jboss-as.conf
+   Uses the built-in bin/init.d/jboss-as.conf file for
+   /etc/jboss-as/jboss-as.conf, with all default values uncomented.
 
-   Uuses "jboss-as" user.
+   Uses "jboss-as" user.
 
-   Ses up /var/log/jboss-as and /var/run/jboss-as with correct ownership.
+   Sets up /var/log/jboss-as and /var/run/jboss-as with correct
+   ownership.
 
-   Use "/usr/share/jboss-as", not version specific locations
+   Uses "/usr/share/jboss-as", not version specific locations,
+   matching the default jboss-as.conf settings.
 
-As noted on that web page, it's necessary to set up the initial JBoss
-AS users after installation:
+As noted on that web page, it's necessary to set up the initial JBoss AS
+users after installation:
 
    # sudo -i -u jboss-as
    # cd /usr/share/jboss-as/bin
@@ -36,4 +39,4 @@ AS users after installation:
 "jb0ss" is a commonly used default password.
 
 	     Nico Kadel-Garcia <nkadel@gmail.com>
-	     2013-09-18
+	     2013-12-13
